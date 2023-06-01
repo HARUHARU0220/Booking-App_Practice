@@ -27,11 +27,15 @@ mongoose.connection.on("disconnected",()=>{
 //middleware
 
 app.use(express.json());
+
 app.use("/auth", authRoute);
 app.use("/hotels", hotelsRoute);
 app.use("/rooms", roomsRoute);
 app.use("/users", usersRoute);
 
+app.use((req,res,next) => {
+    res.send("Hello from middleware")
+    })
 
 app.listen(8000, ()=> {
     connect()
