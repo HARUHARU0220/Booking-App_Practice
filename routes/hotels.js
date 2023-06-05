@@ -59,11 +59,17 @@ router.get("/:id", async (req,res) => {
 
 router.get("/", async (req,res, next) => {
 
+    const failed = true
+    const err = new Error()
+    err.status = 404;
+    err.message = "Sorry not found!";
+    if (failed) return next(err)
+
     try {
         const hotels = await Hotel.findById("asdfg");
         res.status(200).json(hotels);
     } catch (err) {
-        next(err)
+        next (err)
     }
 });
 
