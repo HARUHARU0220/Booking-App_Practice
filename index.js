@@ -5,7 +5,7 @@ import authRoute from "../Booking App_Practice/routes/auth.js"
 import hotelsRoute from "../Booking App_Practice/routes/hotels.js"
 import roomsRoute from "../Booking App_Practice/routes/rooms.js"
 import usersRoute from "../Booking App_Practice/routes/users.js"
-
+import cookieParser from "cookie-parser";
 
 
 const app = express()
@@ -27,7 +27,7 @@ mongoose.connection.on("disconnected",()=>{
 
 //middleware
 
-
+app.use(cookieParser())
 app.use(express.json());
 
 app.use("/auth", authRoute);
