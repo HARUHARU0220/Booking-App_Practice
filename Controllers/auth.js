@@ -28,8 +28,8 @@ export const login = async ( req ,res, next) => {
        const isPasswordCorrect = await bcrypt.compare(req.body.password,user.password)
        if (!isPasswordCorrect)
            return next(createError(400, "Wrong password or username!"));
-
-        res.status(200).json("User has been created")
+        const {password, isAdmin, ...otherDetails} = user._doc;
+        res.status(200).json({...otherDetails});
     } catch (err) {
         next(err)
     }
