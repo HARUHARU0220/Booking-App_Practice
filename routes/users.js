@@ -1,14 +1,17 @@
 import express from "express"
 import {updateUser, deleteUser, getUser, getUsers} from "../Controllers/users.js";
-import {verifyToken} from "../utils/verifyToken.js";
+import {verifyToken, veryfyUser} from "../utils/verifyToken.js";
 
 const router = express.Router();
 
 
-router.get("/checkauthentication", verifyToken, (req,res,next) =>{
+router.get("/checkauthentication",verifyToken, (req,res,next) =>{
     res.send("hello user, you are logged in")
 })
 
+router.get("/checkusers/:Id", veryfyUser, (req,res,next) =>{
+    res.send("hello user, you are logged in and you can delete your account! ")
+})
 
 
 

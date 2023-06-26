@@ -15,3 +15,12 @@ export const verifyToken = (req,res,next) => {
     });
 };
 
+export const veryfyUser = (req,res,next) => {
+    verifyToken(req,res, ()=>{
+        if(req.user.id === req.params.id || req.user.isAdmin) {
+            next();
+        } else {
+            return next(createError(403,"You are not authorized"));
+        }
+    })
+}
