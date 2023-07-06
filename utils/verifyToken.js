@@ -23,4 +23,14 @@ export const veryfyUser = (req,res,next) => {
             return next(createError(403,"You are not authorized"));
         }
     })
+};
+
+export const veryfyAdmin = (req,res,next) => {
+    verifyToken(req,res, ()=>{
+        if(req.user.isAdmin) {
+            next();
+        } else {
+            return next(createError(403,"You are not authorized"));
+        }
+    })
 }
